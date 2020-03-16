@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>mall-admin</artifactId>
-    <name>Micro-Mall-Admin</name>
+    <artifactId>mall-gateway</artifactId>
+    <name>Micro-Mall-Gateway</name>
     <version>1.0-SNAPSHOT</version>
     <url>https://www.mircromall.xyz</url>
 
@@ -19,13 +19,23 @@
         <dependency>
             <groupId>xyz.micromall</groupId>
             <artifactId>mall-common</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
-        <!-- 客户服务api -->
         <dependency>
-            <groupId>xyz.micromall</groupId>
-            <artifactId>mall-consumer-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+        </dependency>
+
+        <!-- SpringCloud Gateway -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
     </dependencies>

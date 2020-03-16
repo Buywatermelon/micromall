@@ -30,6 +30,7 @@
         <module>mall-common</module>
         <module>mall-consumer</module>
         <module>mall-consumer-api</module>
+        <module>mall-gateway</module>
     </modules>
 
     <dependencyManagement>
@@ -47,6 +48,14 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Spring Cloud Alibaba -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.2.0.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

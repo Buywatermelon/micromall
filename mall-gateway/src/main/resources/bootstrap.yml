@@ -1,0 +1,44 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: Mall-Gateway
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        server-addr: 127.0.0.1:8848
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          lower-case-service-id: true
+      routes:
+        # Add your routes here.
+        - id: aliyun_route
+          uri: https://www.aliyun.com/
+          predicates:
+            - Path=/product/**
+        - id: httpbin_route
+          uri: https://httpbin.org
+          predicates:
+            - Path=/httpbin/**
+          filters:
+            - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
+    sentinel:
+      filter:
+        enabled: false
+      transport:
+        port: 8720
+        dashboard: 127.0.0.1:8858
+      eager: true
+      datasource:
+        ds:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            data-id: ${spring.application.name}-Sentinel
+            group-id: DEFAULT_GROUP
+            rule-type: flow
